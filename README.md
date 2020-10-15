@@ -39,6 +39,19 @@ Connect to the APEX Instance Administration, then go to `Manage Instance -> Inst
 Set the following Values on the Section `Report Printing`:
 ![Report Printing Settings](report_printing_settings.png)
 
+Alternatively (for Runtime-Environments) you can set the necessary Parameters by using `APEX_INSTANCE_ADMIN.set_parameter`:
+```
+BEGIN
+  APEX_INSTANCE_ADMIN.set_parameter('PRINT_BIB_LICENSED', 'STANDARD');
+  APEX_INSTANCE_ADMIN.set_parameter('PRINT_SVR_HOST', '127.0.0.1');
+  APEX_INSTANCE_ADMIN.set_parameter('PRINT_SVR_PORT', '8080');
+  APEX_INSTANCE_ADMIN.set_parameter('PRINT_SVR_PROTOCOL', 'http');
+  APEX_INSTANCE_ADMIN.set_parameter('PRINT_SVR_SCRIPT', '/apex-print-server');
+END;
+/
+COMMIT;
+```
+
 ## Oracle Setup
 You have to authorize the Oracle Database that Oracle APEX can communicate with the
 Apache Tomcat.
